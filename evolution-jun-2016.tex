@@ -1,0 +1,471 @@
+\documentclass{beamer}
+\usepackage{colortbl}
+\usepackage{graphicx}
+\usepackage{ulem}
+
+\include{slide-macros}
+
+\newcommand{\basedir}{files}
+
+%%% macros
+\def\migrate{\lambda_{\text{mig}}}
+\def\mutrate{\lambda_{\text{mut}}}
+\def\Tmig{T_{\text{mig}}}
+\def\Tmut{T_{\text{mut}}}
+
+
+\setbeamertemplate{blocks}[default]
+\usecolortheme{rose}
+
+\mode<presentation>
+{
+  % \usetheme{default}
+  \usetheme{boxes}
+  % or ...
+  \usefonttheme[options]{structuresmallcapsserif}
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title % (optional, use only with long paper titles)
+{ Geography, and adaptation }
+
+\author % (optional, use only with lots of authors)
+{Peter Ralph}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[UO]
+{
+    University of Oregon \\ Biology \& Mathematics
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date % (optional)
+{Evolution! Austin, June 18, 2016}
+
+\def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%% %%%%%%%%%%%%% %%%%%%%%%%
+
+\begin{frame}{}
+
+    collaborators
+
+\end{frame}
+
+\begin{frame}{the Mojave Desert Tortoise: \only<1>{ \it Gopherus agassizii}}
+    \begin{center}
+  \includegraphics<1>[width=\textwidth]{\basedir/tortoise-in-burrow}
+  \includegraphics<2>[width=.9\textwidth]{\basedir/range-abundance-map}
+  \includegraphics<3>[height=.8\textheight]{\basedir/ivanpah-opens}
+  \includegraphics<4>[height=.8\textheight]{\basedir/latimes-torts-delay-solar}
+    \end{center}
+\end{frame}
+
+%%%%%%%%
+\begin{frame}{The question}
+  \begin{columns}[c]
+    \begin{column}{.4\textwidth}
+
+      {\Large How will changes to the landscape change gene flow? }
+
+
+    \end{column}
+    \begin{column}{.6\textwidth}
+      \begin{center}
+
+        \vfill
+        \includegraphics[width=\textwidth]{\basedir/drecp-pref-alt-snapshot}
+        \vfill
+
+          % % \vspace{-4em}
+          % \includegraphics[width=.7\textwidth]{\basedir/hagerty-2011-habitat-model}
+          % \figcaption{Habitat predicted by 12-variable model, with least-cost paths,
+          %     from 20 microsats.
+          % {(Hagerty, Nussear, Esque, \& Tracy 2011)}}
+
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+%%%%%%%%
+\begin{frame}{Data collection}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+
+      Thanks to
+      {\newthing \bf lots of hard work},
+      we have
+      \begin{itemize}
+        \item 83 GIS layers at 30m -- Jannet Vu (UCLA)
+        \item<2-> tissue samples -- Dick Tracy, Chava Weitzman (UNR), Fran Sandmeier (U.\ Lindenwood)
+        \item<3-> 270 tortoises: whole-genome sequences, average {\newthing 1.5x coverage}, ${}>10^{12}$ bp -- Evan McCartney-Melstad (UCLA)
+          % \begin{itemize}
+          %   \item<4-> mapped to Galapagos Tortoise
+          % \end{itemize}
+      \end{itemize}
+
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{center}
+
+          \includegraphics<1>[width=\textwidth]{\basedir/raster-list}
+          \includegraphics<2>[width=\textwidth]{\basedir/fieldwork}
+          \includegraphics<3>[width=2\textwidth]{\basedir/sample_map}
+          % \includegraphics<4>[width=\textwidth]{\basedir/tortCoverages-cropped}
+
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+%%%%%%%%
+\begin{frame}{Pairwise divergence}
+  \centering
+        % made in tortoisescape/visualization/talk-plots.R
+        \includegraphics<1>[width=\textwidth]{\basedir/everyone-pwp}
+        \includegraphics<2>[width=\textwidth]{\basedir/pwp_etort-191}
+        \includegraphics<3>[width=\textwidth]{\basedir/pwp_etort-57}
+        \includegraphics<4>[width=\textwidth]{\basedir/pwp_etort-35}
+        \includegraphics<5>[width=\textwidth]{\basedir/pwp_etort-285}
+        \includegraphics<6>[width=\textwidth]{\basedir/pwp_etort-229}
+        \includegraphics<7>[width=\textwidth]{\basedir/pwp_etort-273}
+        \includegraphics<8>[width=\textwidth]{\basedir/pwp_etort-240}
+   \vspace{2em}
+
+  divergence $=$ (mean density of nucelotide differences)
+\end{frame}
+
+%%%%%%%
+\begin{frame}{Descriptive statistics}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \centering
+        % made in tortoisescape/visualization/talk-plots.R
+      \includegraphics<1-2>[height=0.9\textheight]{\basedir/everyone-pwp-vertical}
+      \includegraphics<3->[width=\textwidth]{\basedir/IBD-spectrum-by-NS}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      \begin{itemize}
+          \item Sequencing error $<.001$ (from mitochondria)
+          \item Mean time to most recent common ancestor: 
+              {\newthing $\approx 100,000$ generations}
+              {\aside (calibrated to painted turtle)}
+          \item<2-> Additional separation across north/south break:
+              {\newthing $\approx 10\%$}
+          \item<3-> Similar demography in north and south?
+      \end{itemize}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+%%%%%%%
+\begin{frame}{Following a lineage}
+  \begin{columns}
+    \begin{column}{.5\textwidth}
+      \centering
+      \includegraphics{\basedir/lineages-hitting-time-onelineage}
+    \end{column}
+    \begin{column}{.5\textwidth}
+      A {\newthing single lineage} back through time: \\
+      \begin{itemize}
+          \item jump rate is mean age of parent at birth
+          \item tends to move towards regions that produce more offspring
+      \end{itemize}
+
+
+    \end{column}
+  \end{columns}
+\end{frame}
+
+%%%%%%%
+\begin{frame}{Aside: inverse problems}
+
+\end{frame}
+
+%%%%%%%
+\begin{frame}{Lineage movement}
+
+  Recall that we have {\newthing landscape variables}, e.g.,
+  \begin{align*}
+    g_1(x) &= ( \text{ elevation at $x$ } ) \\
+    g_2(x) &= ( \text{ scrub cover at $x$ } ) \\
+    \vdots
+  \end{align*}
+  and define
+  \begin{align*}
+    \text{jump rate at $x$:} \qquad u(x) &= 1/\left(1+\exp\left( - {\color{blue} \sum_{k=1}^n \alpha_k g_k(x) } \right) \right) \\
+    \text{habitat quality at $x$:} \qquad \rho(x) &= e^\gamma / \left(1+\exp\left( - {\color{blue} \sum_{k=1}^n \beta_k g_k(x) } \right) \right)
+  \end{align*}
+
+  Then choose $\alpha$, $\beta$, and $\gamma$ so that
+  \[
+  dX_t = \rho(X_t) \nabla u(X_t) dt + \sqrt{\rho(X_t) u(X_t)} dB_t  
+  \]
+  fits the data.
+  % {\aside $X_t$ is a {\newthing inhomogeneous diffusion in a potential}}
+
+\end{frame}
+
+
+%%%%%
+\begin{frame}{The rest of the method}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+
+        \item<1-> Sequence divergence \\
+          $\approx$ {\newthing mean hitting times} of a lineage
+          \vspace{2em}
+
+        \item<2-> fit parameters by solving PDE 
+          % \\ {\aside (multigrid methods)}
+
+        % \item<2-> as are {\newthing derivatives}
+        %   with respect to the parameters
+           \vspace{2em}
+
+        \item<3-> {\newthing Results:} quantitative comparison of different development scenarios.
+
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics<1>[height=.9\textheight]{\basedir/resistance-approx-right}
+      % \only<2>{
+      %   \begin{align*}
+      %     \rho(x) \nabla \cdot ( u(x) \nabla h_A(x) ) &= -1  \\
+      %     \qquad \text{for } x \notin &A  \\
+      %     h_A(x) &= 0  \\
+      %      \qquad \text{for } x \in &A   
+      %   \end{align*}
+      % }
+      \only<2>{
+      \vspace{-.4in}
+
+      \includegraphics[height=\textheight]{\basedir/example-hitting-times}
+      }
+      \only<3>{
+        % \includegraphics[width=0.8\textwidth]{\basedir/tort-times-alt-1.png}
+        % \includegraphics[width=0.8\textwidth]{\basedir/tort-times-alt-2.png}
+        \includegraphics[width=0.8\textwidth]{\basedir/tort-times-alt-2-cropped.png}
+      }
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+%%%%%%%
+\begin{frame}{Slow and steady}
+
+    Best-fit model uses only the shape of the range {\struct (flat!)},
+
+    but better fit should be possible.
+
+    \begin{overlayarea}{\textwidth}{0.8\textheight}
+        \centering
+        \vfill
+
+            % Lake Manix; Mojave River
+        % \includegraphics[height=0.8\textheight]{\basedir/glaciallakes.png}
+        \includegraphics<2>[height=0.8\textheight]{\basedir/lakemap4.png}
+
+    \end{overlayarea}
+
+\end{frame}
+
+
+%%%%%%%%% %%%%%%%%%%%% %%%%%%%%%%%%
+\section{Next steps}
+
+%%%%%%%%
+\begin{frame}{What's next}
+
+  \begin{itemize}
+
+    \item
+      Use haplotype sharing
+      to fit models of lineage movement,
+      \pause
+
+    \item
+      including time-inhomogeneous models.
+      \pause
+
+  \end{itemize}
+
+  \vspace{2em}
+
+  Putting it all together,
+  \begin{itemize}
+
+      \item
+        spatially explicit models
+          \pause
+      
+      \item 
+          of explicit regulatory networks
+          \pause
+
+      \item 
+          adapting to heterogeneous selective pressures.
+
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+
+  \begin{center}
+    {\Large Thanks! }
+
+
+
+  \begin{columns}[c]
+    \begin{column}{.4\textwidth}
+      \begin{center}
+          {Evan McCartney-Melstad}
+
+          \includegraphics[width=\textwidth]{\basedir/evan}
+
+  {Graham Coop}
+
+  \includegraphics[width=\textwidth]{\basedir/coop_graham_full1}
+
+      \end{center}
+    \end{column}
+    \begin{column}{.6\textwidth}
+
+        \vspace{-2em}
+      {Brad Shaffer}
+
+        \includegraphics[width=0.75\textwidth]{\basedir/brad}
+
+      Gideon Bradburd
+      \vspace{0.5em}
+
+      Jannet Vu
+      \vspace{0.5em}
+
+      \textbf{Data:}
+      POPRES
+      //
+      Fran Sandmeier, Chava Weitzman, Dick Tracy
+      \vspace{0.5em}
+
+      \textbf{Funding:}
+
+      NSF: ABI // 
+      Sloan Foundation
+
+    \end{column}
+  \end{columns}
+
+
+  \end{center}
+\end{frame}
+
+%%%%%%%%%% %%%%%%%%%%%%% %%%%%%%%%%
+
+
+\section*{More details about fitting hitting times}
+
+%%%%%
+\begin{frame}{Pairwise divergence and hitting times}
+      \includegraphics<1>[width=\textwidth]{\basedir/lineages-hitting-time-coal}
+      \includegraphics<2>[width=\textwidth]{\basedir/lineages-hitting-time-divergence}
+      \includegraphics<3>[width=\textwidth]{\basedir/lineages-hitting-time-divergence-decomp}
+      % \includegraphics<4>[width=\textwidth]{\basedir/lineages-hitting-time-divergence-notation}
+\end{frame}
+
+%%%%%%%
+\begin{frame}{A more tractable problem}
+  \begin{center}
+      \includegraphics[width=\textwidth]{\basedir/lineages-hitting-time-resistance-coal}
+  \end{center}
+  Replace {\oldthing $\tau_N$} by commute time \\
+  (a.k.a.\ {\newthing resistance distance}, McRae et al)
+  \begin{align*}
+    N(i,j) &= \E[ \text{( time to get near $j$ started from $i$ )} ] \\
+    H(i,j) &\approx \frac{ N(i,j) + N(j,i) }{2} .
+  \end{align*}
+\end{frame}
+
+%%%%%%%
+\begin{frame}{A more tractable problem}
+  \begin{center}
+      \includegraphics[width=\textwidth]{\basedir/lineages-hitting-time-resistance-divergence}
+  \end{center}
+  Find parameters $\alpha$, $\beta$, $\gamma$, $T$ to minimize
+  \[
+  \sum_{ij} | D(i,j) - T - H(i,j) |^2
+  \]
+\end{frame}
+
+%%%%%%%
+\begin{frame}{Fitting hitting times}
+
+  Parameters $\alpha$, $\beta$, $\gamma$ determine $u$ and $\rho$:
+  \[
+  Gf(x) := \rho(x) \nabla \cdot ( u(x) \nabla f(x) ) .
+  \]
+  Then
+  \[
+  h_A(x) := \E[ \text{ time for $X_t$ to hit $A$ from $x$ } ] ,
+  \]
+  solves
+  \begin{align*}
+    G h_A(x) &= -1  \qquad \text{for } x \notin A \\
+    h_A(x) &= 0  \qquad \text{for } x \in A 
+  \end{align*}
+  {\struct Keywords:} multigrid methods for elliptic PDE.
+  
+
+  \ldots and we can get derivatives by solving the same sort of equation:
+  \begin{align*}
+    G (\partial_\alpha h_A(x)) &= -(\partial_\alpha G) h_A(x)  \\
+    G (\partial_\alpha^2 h_A(x)) &= -(\partial_\alpha^2 G) h_A(x) -2 (\partial_\alpha G)(\partial_\alpha h_A(x))
+  \end{align*}
+  \ldots and use a \alert{trust region algorithm} to optimize.
+
+\end{frame}
+
+%%%%%
+\begin{frame}{}
+  \fullslide{
+  \centering
+  \includegraphics[height=\textheight]{\basedir/example-hitting-times}
+  }
+\end{frame}
+
+
+\end{document}
