@@ -12,7 +12,7 @@
 \def\mutrate{\lambda_{\text{mut}}}
 \def\Tmig{T_{\text{mig}}}
 \def\Tmut{T_{\text{mut}}}
-
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
 
 \setbeamertemplate{blocks}[default]
 \usecolortheme{rose}
@@ -42,7 +42,8 @@
 
 
 \title % (optional, use only with long paper titles)
-{ Geography, and adaptation }
+{ Population Genomics \\ 
+of the Mojave Desert Tortoise  }
 
 \author % (optional, use only with lots of authors)
 {Peter Ralph}
@@ -57,7 +58,7 @@
 % - Keep it simple, no one is interested in your street address.
 
 \date % (optional)
-{Evolution! Austin, June 18, 2016}
+{Evolution! \\ Austin, June 18, 2016}
 
 \def\Put(#1,#2)#3{\leavevmode\makebox(0,0){\put(#1,#2){#3}}}
 
@@ -72,7 +73,47 @@
 
 \begin{frame}{}
 
-    collaborators
+  \begin{columns}[c]
+    \begin{column}{.4\textwidth}
+      \begin{center}
+        {\struct Collaborators:}
+
+          {Evan McCartney-Melstad}
+
+          \includegraphics[width=\textwidth]{\basedir/evan}
+
+      {Gideon Bradburd}
+
+          \includegraphics[width=\textwidth]{\basedir/gideon-chuckwallas}
+
+      \end{center}
+    \end{column}
+    \begin{column}{.6\textwidth}
+
+        \vspace{-2em}
+      {Brad Shaffer}
+
+        \includegraphics[width=0.75\textwidth]{\basedir/brad}
+
+        Roy Averill-Murray (US F\&WS)
+
+        Erik Lundgren (USC)
+      \vspace{0.5em}
+
+        Jannet Vu (UCLA)
+      \vspace{0.5em}
+
+      \textbf{Data:}
+      Fran Sandmeier, Chava Weitzman, Dick Tracy
+      \vspace{0.5em}
+
+      \textbf{Funding:}
+        US F\&WS \\
+      NSF: ABI // 
+      Sloan Foundation
+
+    \end{column}
+  \end{columns}
 
 \end{frame}
 
@@ -86,11 +127,15 @@
 \end{frame}
 
 %%%%%%%%
-\begin{frame}{The question}
+\begin{frame}{The question(s)}
   \begin{columns}[c]
     \begin{column}{.4\textwidth}
 
-      {\Large How will changes to the landscape change gene flow? }
+        {\Large How will changes to the landscape affect population viability and gene flow?}
+
+        \vspace{3em}
+
+        {\newthing \large How do tortoises move around on the landscape?}
 
 
     \end{column}
@@ -105,7 +150,7 @@
           % \includegraphics[width=.7\textwidth]{\basedir/hagerty-2011-habitat-model}
           % \figcaption{Habitat predicted by 12-variable model, with least-cost paths,
           %     from 20 microsats.
-          % {(Hagerty, Nussear, Esque, \& Tracy 2011)}}
+           {\aside (Hagerty, Nussear, Esque, \& Tracy 2011)}
 
       \end{center}
     \end{column}
@@ -114,7 +159,7 @@
 
 
 %%%%%%%%
-\begin{frame}{Data collection}
+\begin{frame}{Data, part I}
   \begin{columns}
     \begin{column}{.5\textwidth}
 
@@ -122,9 +167,10 @@
       {\newthing \bf lots of hard work},
       we have
       \begin{itemize}
-        \item 83 GIS layers at 30m -- Jannet Vu (UCLA)
-        \item<2-> tissue samples -- Dick Tracy, Chava Weitzman (UNR), Fran Sandmeier (U.\ Lindenwood)
-        \item<3-> 270 tortoises: whole-genome sequences, average {\newthing 1.5x coverage}, ${}>10^{12}$ bp -- Evan McCartney-Melstad (UCLA)
+          \item<1-> 83 GIS layers at 30m -- {\it Jannet Vu (UCLA)}
+          \item<2-> tissue samples -- {\it Dick Tracy, Chava Weitzman (UNR), Fran Sandmeier (U.\ Lindenwood)}
+          \item<3-> 270 tortoises chosen for sequencing -- {\it Evan McCartney-Melstad (UCLA)}
+            %: whole-genome sequences, average {\newthing 1.5x coverage}, ${}>10^{12}$ bp -- Evan McCartney-Melstad (UCLA)
           % \begin{itemize}
           %   \item<4-> mapped to Galapagos Tortoise
           % \end{itemize}
@@ -136,7 +182,7 @@
 
           \includegraphics<1>[width=\textwidth]{\basedir/raster-list}
           \includegraphics<2>[width=\textwidth]{\basedir/fieldwork}
-          \includegraphics<3>[width=2\textwidth]{\basedir/sample_map}
+          \includegraphics<3>[height=.8\textheight]{\basedir/sample_map_elev}
           % \includegraphics<4>[width=\textwidth]{\basedir/tortCoverages-cropped}
 
       \end{center}
@@ -144,45 +190,87 @@
   \end{columns}
 \end{frame}
 
+\begin{frame}{Sequencing \& Bioinformatics}
 
-%%%%%%%%
-\begin{frame}{Pairwise divergence}
-  \centering
-        % made in tortoisescape/visualization/talk-plots.R
-        \includegraphics<1>[width=\textwidth]{\basedir/everyone-pwp}
-        \includegraphics<2>[width=\textwidth]{\basedir/pwp_etort-191}
-        \includegraphics<3>[width=\textwidth]{\basedir/pwp_etort-57}
-        \includegraphics<4>[width=\textwidth]{\basedir/pwp_etort-35}
-        \includegraphics<5>[width=\textwidth]{\basedir/pwp_etort-285}
-        \includegraphics<6>[width=\textwidth]{\basedir/pwp_etort-229}
-        \includegraphics<7>[width=\textwidth]{\basedir/pwp_etort-273}
-        \includegraphics<8>[width=\textwidth]{\basedir/pwp_etort-240}
-   \vspace{2em}
+    Evan McCartney-Melstad (UCLA)
 
-  divergence $=$ (mean density of nucelotide differences)
+    \begin{itemize}
+        \item PCR-free library preparation
+        \item Illumina sequencing: ${}>10^{12}$ bp
+        \item read QC, trimming, and joining
+        \item map to draft \textit{G.~morofkai} genome: 
+            $\approx 1.5\times$ coverage
+            (1.9 Gb, Kusumi et al, in prep)
+        \item identify polymorphic {\newthing sites} with \texttt{angsd} 
+            ($\approx 3\%$ with $p<10^{-6}$)
+        \item read-based estimation of divergence
+            (using $Q\ge30$ bases)
+    \end{itemize}
+
 \end{frame}
 
-%%%%%%%
-\begin{frame}{Descriptive statistics}
-  \begin{columns}
-    \begin{column}{.5\textwidth}
+
+\begin{frame}{Mitochondria}
+
+    \begin{itemize}
+        \item median coverage: $25 \times$
+        \item numts -- regions with consistent ``heterozygosity''
+        \item excluding these, error rate of $(2.22 \pm 0.12)\times 10^{-4}$ \\
+            consistent with other measures
+        \item two haplotypes differing by 0.3\%
+    \end{itemize}
+  \begin{overlayarea}{\textwidth}{0.5\textheight}
       \centering
+    \includegraphics<1>[width=\textwidth]{\basedir/minor-freq-along-mt}
+    \includegraphics<2>[width=\textwidth]{\basedir/error-rate-two-mt-regions}
+    \includegraphics<3>[height=0.45\textheight]{\basedir/mt-hap-map}
+  \end{overlayarea}
+
+\end{frame}
+
+%%%%%%%%
+\begin{frame}{Autosomes: PCA}
+    \centering
+    
+    PCA from covariance matrix of {\newthing raw allele counts}
+
+    \hfill
+    \includegraphics[height=0.45\textheight]{\basedir/continuous_pc_colors_sample_map}
+    \includegraphics[height=0.45\textheight]{\basedir/mt-hap-map}
+    \hfill
+\end{frame}
+
+%%%%%%%%
+\begin{frame}{Clinal contigs?}
+    \centering
+
+    A few contigs show strong correlation with PC1:
+
+    XXX
+
+\end{frame}
+
+%%%%%%%%
+\begin{frame}{Sequence divergence: autosomes}
+  \centering
         % made in tortoisescape/visualization/talk-plots.R
-      \includegraphics<1-2>[height=0.9\textheight]{\basedir/everyone-pwp-vertical}
-      \includegraphics<3->[width=\textwidth]{\basedir/IBD-spectrum-by-NS}
-    \end{column}
-    \begin{column}{.5\textwidth}
-      \begin{itemize}
-          \item Sequencing error $<.001$ (from mitochondria)
-          \item Mean time to most recent common ancestor: 
-              {\newthing $\approx 100,000$ generations}
-              {\aside (calibrated to painted turtle)}
-          \item<2-> Additional separation across north/south break:
-              {\newthing $\approx 10\%$}
-          \item<3-> Similar demography in north and south?
-      \end{itemize}
-    \end{column}
-  \end{columns}
+        \includegraphics<1>[width=\textwidth]{\basedir/everyone-pwp-shaded}
+        \includegraphics<2>[width=\textwidth]{\basedir/pwp_etort-191_shaded}
+        \includegraphics<3>[width=\textwidth]{\basedir/pwp_etort-57_shaded}
+        \includegraphics<4>[width=\textwidth]{\basedir/pwp_etort-35_shaded}
+        \includegraphics<5>[width=\textwidth]{\basedir/pwp_etort-285_shaded}
+        \includegraphics<6>[width=\textwidth]{\basedir/pwp_etort-229_shaded}
+        \includegraphics<7>[width=\textwidth]{\basedir/pwp_etort-273_shaded}
+        \includegraphics<8>[width=\textwidth]{\basedir/pwp_etort-240_shaded}
+
+    \begin{align*}
+        \text{divergence} &= \text{(mean density of nucelotide differences)} \approx 0.5\% \\
+            &= \text{(years)} \times \text{( mutation rate )}
+    \end{align*}
+
+    \vspace{1em} 
+
+    {\aside divergence $\times$ calibrated to painted turtle}
 
 \end{frame}
 
@@ -207,12 +295,7 @@
 \end{frame}
 
 %%%%%%%
-\begin{frame}{Aside: inverse problems}
-
-\end{frame}
-
-%%%%%%%
-\begin{frame}{Lineage movement}
+\begin{frame}{Model for lineage movement}
 
   Recall that we have {\newthing landscape variables}, e.g.,
   \begin{align*}
@@ -235,6 +318,134 @@
 
 \end{frame}
 
+%%%%%%%
+\begin{frame}{This is an inverse problem}
+    \begin{center}
+        \includegraphics[width=\textwidth]{\basedir/inverse-problem-defn}
+
+        \vspace{2em}
+        \only<2->{
+
+        {\large \it cue ominous music }
+        }
+    \end{center}
+
+\end{frame}
+
+\begin{frame}{}
+
+    {\struct Usually,}
+    the {\newthing forwards problem}: 
+    \[ \text{ history } \mapsto \text{ what data? } \]
+    is easy, but 
+    the {\newthing inverse problem}:
+    \[ \text{ data } \mapsfrom \text{ what history? } \]
+    is {\newthing hard}
+
+    \pause
+    \vspace{2em}
+
+    because many possible histories \\
+    map to (nearly) the same data.
+
+\end{frame}
+
+
+%%%%%%%
+\begin{frame}{Slow and steady}
+
+    Best-fit model uses only the shape of the range {\struct (flat!)},
+
+    but better fit should be possible.
+
+    \begin{overlayarea}{\textwidth}{0.8\textheight}
+        \centering
+        \vfill
+
+            % Lake Manix; Mojave River
+        % \includegraphics[height=0.8\textheight]{\basedir/glaciallakes.png}
+        \includegraphics<2>[height=0.8\textheight]{\basedir/lakemap4.png}
+        % \includegraphics<3>[height=0.8\textheight]{\basedir/run_580117_iter_0001_trees-and-things-01}
+        \includegraphics<3>[width=\textwidth]{\basedir/run_580117_iter_0001_trees-and-things-05}
+
+    \end{overlayarea}
+
+\end{frame}
+
+
+%%%%%%%%% %%%%%%%%%%%% %%%%%%%%%%%%
+\section{Next steps}
+
+%%%%%%%%
+\begin{frame}{What's next}
+
+  Population Viability Analysis: (Jaime Ashander)
+
+  \begin{itemize}
+
+      \item landscape-scale individual-based simulation
+      \item inform with the literature
+      \item {\newthing but:} juvenile dispersal almost totally unknown
+      \item fit to genetic data (divergence, local frequency spectra, haplotypes)
+
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+
+  \begin{center}
+    {\Large Thanks! }
+
+
+
+  \begin{columns}[c]
+    \begin{column}{.4\textwidth}
+      \begin{center}
+          {Evan McCartney-Melstad}
+
+          \includegraphics[width=\textwidth]{\basedir/evan}
+
+      {Gideon Bradburd}
+
+          \includegraphics[width=\textwidth]{\basedir/gideon-chuckwallas}
+
+      \end{center}
+    \end{column}
+    \begin{column}{.6\textwidth}
+
+        \vspace{-2em}
+      {Brad Shaffer}
+
+        \includegraphics[width=0.75\textwidth]{\basedir/brad}
+
+        Erik Lundgren (USC)
+      \vspace{0.5em}
+
+        Jannet Vu (UCLA)
+      \vspace{0.5em}
+
+      \textbf{Data:}
+      Fran Sandmeier, Chava Weitzman, Dick Tracy
+      \vspace{0.5em}
+
+      \textbf{Funding:}
+        US F\&WS \\
+      NSF: ABI // 
+      Sloan Foundation
+
+    \end{column}
+  \end{columns}
+
+
+  \end{center}
+\end{frame}
+
+%%%%%%%%%% %%%%%%%%%%%%% %%%%%%%%%%
+
+
+\section*{More details about fitting hitting times}
 
 %%%%%
 \begin{frame}{The rest of the method}
@@ -283,121 +494,6 @@
 \end{frame}
 
 
-%%%%%%%
-\begin{frame}{Slow and steady}
-
-    Best-fit model uses only the shape of the range {\struct (flat!)},
-
-    but better fit should be possible.
-
-    \begin{overlayarea}{\textwidth}{0.8\textheight}
-        \centering
-        \vfill
-
-            % Lake Manix; Mojave River
-        % \includegraphics[height=0.8\textheight]{\basedir/glaciallakes.png}
-        \includegraphics<2>[height=0.8\textheight]{\basedir/lakemap4.png}
-
-    \end{overlayarea}
-
-\end{frame}
-
-
-%%%%%%%%% %%%%%%%%%%%% %%%%%%%%%%%%
-\section{Next steps}
-
-%%%%%%%%
-\begin{frame}{What's next}
-
-  \begin{itemize}
-
-    \item
-      Use haplotype sharing
-      to fit models of lineage movement,
-      \pause
-
-    \item
-      including time-inhomogeneous models.
-      \pause
-
-  \end{itemize}
-
-  \vspace{2em}
-
-  Putting it all together,
-  \begin{itemize}
-
-      \item
-        spatially explicit models
-          \pause
-      
-      \item 
-          of explicit regulatory networks
-          \pause
-
-      \item 
-          adapting to heterogeneous selective pressures.
-
-  \end{itemize}
-
-\end{frame}
-
-
-\begin{frame}
-
-  \begin{center}
-    {\Large Thanks! }
-
-
-
-  \begin{columns}[c]
-    \begin{column}{.4\textwidth}
-      \begin{center}
-          {Evan McCartney-Melstad}
-
-          \includegraphics[width=\textwidth]{\basedir/evan}
-
-  {Graham Coop}
-
-  \includegraphics[width=\textwidth]{\basedir/coop_graham_full1}
-
-      \end{center}
-    \end{column}
-    \begin{column}{.6\textwidth}
-
-        \vspace{-2em}
-      {Brad Shaffer}
-
-        \includegraphics[width=0.75\textwidth]{\basedir/brad}
-
-      Gideon Bradburd
-      \vspace{0.5em}
-
-      Jannet Vu
-      \vspace{0.5em}
-
-      \textbf{Data:}
-      POPRES
-      //
-      Fran Sandmeier, Chava Weitzman, Dick Tracy
-      \vspace{0.5em}
-
-      \textbf{Funding:}
-
-      NSF: ABI // 
-      Sloan Foundation
-
-    \end{column}
-  \end{columns}
-
-
-  \end{center}
-\end{frame}
-
-%%%%%%%%%% %%%%%%%%%%%%% %%%%%%%%%%
-
-
-\section*{More details about fitting hitting times}
 
 %%%%%
 \begin{frame}{Pairwise divergence and hitting times}
