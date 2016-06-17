@@ -1,0 +1,14 @@
+{
+  "pop.density": [1.3132e-07],
+  "sigma": [7269.32],
+  "refugia.coords": [
+    [586001.7507, 3731730.5267],
+    [745987.6163, 3763727.6998]
+  ],
+  "refugia.radii": [119110.2083],
+  "refugia.time": [13246.7905],
+  "expansion.time": [11722.8831],
+  "expansion.speed": [0.4],
+  "expansion.width": [59445.2052],
+  "seed": [1577368717]
+}
