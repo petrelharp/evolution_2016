@@ -111,7 +111,7 @@ of the Mojave Desert Tortoise  }
 
 
 %%%%%%%%
-\begin{frame}{Data, part I}
+\begin{frame}{Data}
   \begin{columns}
     \begin{column}{.5\textwidth}
 
@@ -166,16 +166,16 @@ of the Mojave Desert Tortoise  }
 
     \begin{itemize}
         \item median coverage: $25 \times$
-        \item NuMts -- regions with consistent ``heterozygosity''
-        \item excluding these, error rate of $(2.22 \pm 0.12)\times 10^{-4}$ \\
-            consistent with other measures
-        \item two haplotypes differing by 0.3\%
+        % \item NuMts -- regions with consistent ``heterozygosity''
+        \item % excluding these, 
+            per-base error rate of $(2.22 \pm 0.12)\times 10^{-4}$ 
+        \item<2-> two haplotypes differing by 0.3\%
     \end{itemize}
   \begin{overlayarea}{\textwidth}{0.5\textheight}
       \centering
-    \includegraphics<1>[width=\textwidth]{\basedir/minor-freq-along-mt}
-      \includegraphics<2>[height=0.55\textheight]{\basedir/error_estimates}
-    \includegraphics<3>[height=0.55\textheight]{\basedir/mt-hap-map}
+    % \includegraphics<1>[width=\textwidth]{\basedir/minor-freq-along-mt}
+    % \includegraphics<1>[height=0.55\textheight]{\basedir/error_estimates}
+    \includegraphics<2>[height=0.55\textheight]{\basedir/mt-hap-map}
   \end{overlayarea}
 
 \end{frame}
@@ -322,9 +322,9 @@ of the Mojave Desert Tortoise  }
 
             % Lake Manix; Mojave River
         % \includegraphics[height=0.8\textheight]{\basedir/glaciallakes.png}
-        \includegraphics<2>[height=0.8\textheight]{\basedir/lakemap4.png}
+        \includegraphics<2>[height=0.75\textheight]{\basedir/lakemap4.png}
         % \includegraphics<3>[height=0.8\textheight]{\basedir/run_580117_iter_0001_trees-and-things-01}
-        \includegraphics<3>[width=\textwidth]{\basedir/run_580117_iter_0001_trees-and-things-05}
+        % \includegraphics<3>[width=\textwidth]{\basedir/run_580117_iter_0001_trees-and-things-05}
 
     \end{overlayarea}
 
@@ -337,6 +337,8 @@ of the Mojave Desert Tortoise  }
 %%%%%%%%
 \begin{frame}{What's next}
 
+  \begin{columns}[c]
+    \begin{column}{.6\textwidth}
   Population Viability Analysis: (Jaime Ashander)
 
   \begin{itemize}
@@ -347,6 +349,11 @@ of the Mojave Desert Tortoise  }
       \item fit to genetic data (divergence, local frequency spectra, haplotypes)
 
   \end{itemize}
+    \end{column}
+    \begin{column}{.4\textwidth}
+        \includegraphics[width=\textwidth]{\basedir/jaime}
+    \end{column}
+  \end{columns}
 
 \end{frame}
 
